@@ -1,0 +1,27 @@
+{
+  "name": "coincheck",
+  "version": "0.1.2",
+  "description": "The easiest Bitcoin Exchange in Japan",
+  "main": "src/coin_check.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coincheckjp/coincheck-node.git"
+  },
+  "keywords": [
+    "coincheck",
+    "coincheck-node"
+  ],
+  "author": "coincheck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coincheckjp/coincheck-node/issues"
+  },
+  "homepage": "https://github.com/coincheckjp/coincheck-node#readme"
+}
