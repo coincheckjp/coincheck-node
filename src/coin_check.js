@@ -77,12 +77,9 @@ CoinCheck.prototype = {
         var nonce, url, message, signature;
 
         nonce = new Date().getTime();
-        // url = this.apiBase + path;
         url = 'https://' + this.apiBase + path;
-        // message = nonce + url + querystring.stringify(arr);
-        message = nonce + url + JSON.stringify(arr);
+        message = nonce + url + (arr ? JSON.stringify(arr) : '');
         signature = crypto.createHmac('sha256', this.secretKey).update(message).digest('hex');
-        //console.info(nonce, url, message, signature);
         this._headers = utils.extend(this._headers, {
             'ACCESS-KEY': this.accessKey,
             'ACCESS-NONCE': nonce,
@@ -97,9 +94,11 @@ CoinCheck.prototype = {
         paramData = params.data ? params.data : {};
         options = params.options ? params.options : {};
 
-        if (method == 'get' && utils.isEmpty(paramData) === false) {
+        if (method == 'get') {
+          if (utils.isEmpty(paramData) === false) {
             path = path + '?' + querystring.stringify(paramData);
-            paramData = {};
+          }
+          paramData = null;
         }
 
         this.setSignature(path, paramData);
