@@ -72,15 +72,18 @@ CoinCheck.prototype = {
     /** @var Transfer */
     _transfer: null,
     _headers: {},
+    /* int requests */
+    _requests: 0,
 
-    setSignature: function (path, obj) {
+    setSignature: function (path, obj, headers) {
         var nonce, url, message, signature;
-
-        nonce = new Date().getTime();
+        this._requests++;
+        
+        nonce = new Date().getTime() + this._requests;
         url = 'https://' + this.apiBase + path;
         message = nonce + url + ((Object.keys(obj).length > 0) ? JSON.stringify(obj) : '');
         signature = crypto.createHmac('sha256', this.secretKey).update(message).digest('hex');
-        this._headers = utils.extend(this._headers, {
+        return utils.extend(headers, {
             'ACCESS-KEY': this.accessKey,
             'ACCESS-NONCE': nonce,
             'ACCESS-SIGNATURE': signature
@@ -88,7 +91,7 @@ CoinCheck.prototype = {
 
     },
     request: function (method, path, params) {
-        var paramData, options, req, success, error;
+        var headers, paramData, options, req, success, error;
 
         params = params || {};
         paramData = params.data ? params.data : {};
@@ -99,10 +102,11 @@ CoinCheck.prototype = {
             paramData = {};
         }
 
-        this.setSignature(path, paramData);
-
+        headers = JSON.parse(JSON.stringify(this._headers));
+        headers = this.setSignature(path, paramData, headers);
+        
         if (method == 'post' || method == 'delete') {
-            this._headers = utils.extend(this._headers, {
+            headers = utils.extend(headers, {
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(JSON.stringify(paramData))
             });
@@ -113,7 +117,7 @@ CoinCheck.prototype = {
             port: 443,
             path: path,
             method: method,
-            headers: this._headers
+            headers: headers
         };
         //console.info(req_params);
 
