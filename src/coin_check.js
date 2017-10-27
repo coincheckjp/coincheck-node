@@ -88,7 +88,7 @@ CoinCheck.prototype = {
 
     },
     request: function (method, path, params) {
-        var paramData, options, req, success, error;
+        var headers, paramData, options, req, success, error;
 
         params = params || {};
         paramData = params.data ? params.data : {};
@@ -100,9 +100,10 @@ CoinCheck.prototype = {
         }
 
         this.setSignature(path, paramData);
-
+        headers = this._headers
+        
         if (method == 'post' || method == 'delete') {
-            this._headers = utils.extend(this._headers, {
+            headers = utils.extend(headers, {
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(JSON.stringify(paramData))
             });
@@ -113,7 +114,7 @@ CoinCheck.prototype = {
             port: 443,
             path: path,
             method: method,
-            headers: this._headers
+            headers: headers
         };
         //console.info(req_params);
 
