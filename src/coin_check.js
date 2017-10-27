@@ -100,7 +100,7 @@ CoinCheck.prototype = {
         }
 
         this.setSignature(path, paramData);
-        headers = this._headers
+        headers = JSON.parse(JSON.stringify(this._headers));
         
         if (method == 'post' || method == 'delete') {
             headers = utils.extend(headers, {
