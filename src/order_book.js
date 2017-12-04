@@ -1,11 +1,11 @@
-function OrderBook(coinCheck) {
-    this._coinCheck = coinCheck;
+function OrderBook(coincheck) {
+    this._coincheck = coincheck;
 }
 
 OrderBook.prototype = {
     urlRoot: '/api/order_books',
     all: function(params){
-        return this._coinCheck.request('get', this.urlRoot, params);
+        return this._coincheck.request('get', this.urlRoot, params);
     }
 };
 

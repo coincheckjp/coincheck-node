@@ -13,9 +13,9 @@ npm install coincheck
 ## Usage
 
 ```js
-var CoinCheck = require('../src/coin_check.js');
+var Coincheck = require('../src/coin_check.js');
 
-var coinCheck = new CoinCheck.CoinCheck('ACCESS_KEY', 'API_SECRET');
+var cc = new Coincheck.Coincheck('ACCESS_KEY', 'API_SECRET');
 
 var params = {
     options: {
@@ -29,9 +29,9 @@ var params = {
 };
 
 /** Public API */
-coinCheck.ticker.all(params);
-coinCheck.trade.all(params);
-coinCheck.orderBook.all(params);
+cc.ticker.all(params);
+cc.trade.all(params);
+cc.orderBook.all(params);
 
 /** Private API */
 
@@ -50,59 +50,59 @@ params['data'] = {
     order_type: 'buy',
     pair: 'btc_jpy'
 }
-coinCheck.order.create(params);
+cc.order.create(params);
 
 // 未決済の注文一覧
-coinCheck.order.opens(params);
+cc.order.opens(params);
 
 // 注文のキャンセル
 params['data'] = {
     id: 2953613
 }
-coinCheck.order.cancel(params);
+cc.order.cancel(params);
 
 // 取引履歴
-coinCheck.order.transactions(params);
+cc.order.transactions(params);
 
 // ポジション一覧
-coinCheck.leverage.positions(params);
+cc.leverage.positions(params);
 
 // 残高
-coinCheck.account.balance(params);
+cc.account.balance(params);
 
 // レバレッジアカウントの残高
-coinCheck.account.leverage_balance(params);
+cc.account.leverage_balance(params);
 
 // アカウント情報
-coinCheck.account.info(params);
+cc.account.info(params);
 
 // ビットコインの送金
 params['data'] = {
     address: '1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY',
     amount: '0.0002'
 };
-coinCheck.send.create(params);
+cc.send.create(params);
 
 // ビットコインの送金履歴
 params['data'] = {
     currency: 'BTC'
 };
-coinCheck.send.all(params);
+cc.send.all(params);
 
 // ビットコインの受け取り履歴
 params['data'] = {
     currency: 'BTC'
 };
-coinCheck.deposit.all(params);
+cc.deposit.all(params);
 
 // ビットコインの高速入金
 params['data'] = {
     id: 2222
 };
-coinCheck.deposit.fast(params);
+cc.deposit.fast(params);
 
 // 銀行口座一覧
-coinCheck.bank_account.all(params);
+cc.bank_account.all(params);
 
 // 銀行口座の登録
 params['data'] = {
@@ -112,16 +112,16 @@ params['data'] = {
     number: "1234567",
     name: "田中 田中"
 };
-coinCheck.bank_account.create(params);
+cc.bank_account.create(params);
 params['data'] = {
     id: 2222
 };
 
 // 銀行口座の削除
-coinCheck.bank_account.delete(params);
+cc.bank_account.delete(params);
 
 // 出金履歴
-coinCheck.withdraw.all(params);
+cc.withdraw.all(params);
 
 // 出金申請の作成
 params['data'] = {
@@ -130,45 +130,44 @@ params['data'] = {
     currency: 'JPY',
     is_fast: false
 };
-coinCheck.withdraw.create(params);
+cc.withdraw.create(params);
 
 // 出金申請のキャンセル
 params['data'] = {
     id: 2222
 };
-coinCheck.withdraw.cancel(params);
+cc.withdraw.cancel(params);
 
 // 借入申請
 params['data'] = {
     amount: '0.01',
     currency: 'BTC'
 };
-coinCheck.borrow.create(params);
+cc.borrow.create(params);
 
 // 借入中一覧
-coinCheck.borrow.matches(params);
+cc.borrow.matches(params);
 
 // 返済
 params['data'] = {
     id: '1135'
 };
-coinCheck.borrow.repay(params);
+cc.borrow.repay(params);
 
 // レバレッジアカウントへの振替
 params['data'] = {
     amount: 100,
     currency: 'JPY'
 };
-coinCheck.transfer.to_leverage(params);
+cc.transfer.to_leverage(params);
 
 // レバレッジアカウントからの振替
 params['data'] = {
     amount: 100,
     currency: 'JPY'
 };
-coinCheck.transfer.from_leverage(params);
+cc.transfer.from_leverage(params);
 ```
 
 ## License
 MIT
-

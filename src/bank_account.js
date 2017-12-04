@@ -1,13 +1,13 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
-function BankAccount(coinCheck) {
-    this._coinCheck = coinCheck;
+function BankAccount(coincheck) {
+    this._coincheck = coincheck;
 }
 
 BankAccount.prototype = {
     urlRoot: '/api/bank_accounts',
     create : function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 bank_name: null,
                 branch_name: null,
@@ -16,18 +16,18 @@ BankAccount.prototype = {
                 name: null,
             }
         }, params);
-        return this._coinCheck.request('post', this.urlRoot, arr);
+        return this._coincheck.request('post', this.urlRoot, arr);
     },
     all : function (params) {
-        return this._coinCheck.request('get', this.urlRoot, params);
+        return this._coincheck.request('get', this.urlRoot, params);
     },
     delete : function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }
         }, params);
-        return this._coinCheck.request('delete', this.urlRoot + '/' + arr.data.id, arr);
+        return this._coincheck.request('delete', this.urlRoot + '/' + arr.data.id, arr);
     }
 };
 

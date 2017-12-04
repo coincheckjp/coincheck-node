@@ -1,24 +1,26 @@
-var fs = require('fs');
-var path = require('path');
-var https = require('https');
-var querystring = require('querystring');
-var crypto = require('crypto');
-var utils = require('./utils.js');
+'use strict'
 
-var Ticker = require('./ticker.js');
-var Trade = require('./trade.js');
-var OrderBook = require('./order_book.js');
-var Order = require('./order.js');
-var Leverage = require('./leverage.js');
-var Account = require('./account.js');
-var Send = require('./send.js');
-var Deposit = require('./deposit.js');
-var BankAccount = require('./bank_account.js');
-var Withdraw = require('./withdraw.js');
-var Borrow = require('./borrow.js');
-var Transfer = require('./transfer.js');
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
+const querystring = require('querystring');
+const crypto = require('crypto');
+const _ = require('underscore');
 
-function CoinCheck(accessKey, secretKey, options) {
+const Ticker = require('./ticker.js');
+const Trade = require('./trade.js');
+const OrderBook = require('./order_book.js');
+const Order = require('./order.js');
+const Leverage = require('./leverage.js');
+const Account = require('./account.js');
+const Send = require('./send.js');
+const Deposit = require('./deposit.js');
+const BankAccount = require('./bank_account.js');
+const Withdraw = require('./withdraw.js');
+const Borrow = require('./borrow.js');
+const Transfer = require('./transfer.js');
+
+function Coincheck(accessKey, secretKey, options) {
     this.accessKey = accessKey;
     this.secretKey = secretKey;
 
@@ -39,10 +41,10 @@ function CoinCheck(accessKey, secretKey, options) {
     this.transfer = new Transfer.Transfer(this);
 }
 
-CoinCheck.prototype = {
+Coincheck.prototype = {
     VERSION: '0.1.0',
 
-    apiBase: 'coincheck.jp',
+    apiBase: 'coincheck.com',
     accessKey: null,
     secretKey: null,
 
@@ -80,7 +82,7 @@ CoinCheck.prototype = {
         url = 'https://' + this.apiBase + path;
         message = nonce + url + ((Object.keys(obj).length > 0) ? JSON.stringify(obj) : '');
         signature = crypto.createHmac('sha256', this.secretKey).update(message).digest('hex');
-        this._headers = utils.extend(this._headers, {
+        this._headers = _.extend(this._headers, {
             'ACCESS-KEY': this.accessKey,
             'ACCESS-NONCE': nonce,
             'ACCESS-SIGNATURE': signature
@@ -94,28 +96,32 @@ CoinCheck.prototype = {
         paramData = params.data ? params.data : {};
         options = params.options ? params.options : {};
 
-        if (method == 'get' && utils.isEmpty(paramData) === false) {
+        if (method == 'get' && _.isEmpty(paramData) === false) {
             path = path + '?' + querystring.stringify(paramData);
             paramData = {};
         }
 
+        let headers = _.extend(this._headers, {
+            'Content-Type': 'application/json',
+            'User-Agent': `NodeCoincheckClient v${Coincheck.prototype.VERSION}`
+        });
+
         this.setSignature(path, paramData);
 
         if (method == 'post' || method == 'delete') {
-            this._headers = utils.extend(this._headers, {
-                'Content-Type': 'application/json',
+            headers = _.extend(headers, {
                 'Content-Length': Buffer.byteLength(JSON.stringify(paramData))
             });
         }
 
-        req_params = {
+        let req_params = {
             host: this.apiBase,
             port: 443,
             path: path,
             method: method,
-            headers: this._headers
+            headers: headers
         };
-        //console.info(req_params);
+        // console.info(req_params);
 
         error = options.error;
         req = https.request(req_params, function(response) {
@@ -152,4 +158,4 @@ CoinCheck.prototype = {
     }
 };
 
-exports.CoinCheck = CoinCheck;
+exports.Coincheck = Coincheck;

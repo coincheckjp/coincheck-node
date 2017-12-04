@@ -1,28 +1,28 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
-function Transfer(coinCheck) {
-    this._coinCheck = coinCheck;
+function Transfer(coincheck) {
+    this._coincheck = coincheck;
 }
 
 Transfer.prototype = {
     urlRoot: '/api/exchange/transfers',
     to_leverage: function(params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 amount: null,
                 currency: null
             }
         }, params);
-        return this._coinCheck.request('post', this.urlRoot + '/to_leverage', arr);
+        return this._coincheck.request('post', this.urlRoot + '/to_leverage', arr);
     },
     from_leverage: function(params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 amount: null,
                 currency: null
             }
         }, params);
-        return this._coinCheck.request('post', this.urlRoot + '/from_leverage', arr);
+        return this._coincheck.request('post', this.urlRoot + '/from_leverage', arr);
     }
 };
 

@@ -1,24 +1,24 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
-function Withdraw(coinCheck) {
-    this._coinCheck = coinCheck;
+function Withdraw(coincheck) {
+    this._coincheck = coincheck;
 }
 
 Withdraw.prototype = {
     urlRoot: '/api/withdraws',
     create: function(params) {
-        return this._coinCheck.request('post', this.urlRoot, params);       
+        return this._coincheck.request('post', this.urlRoot, params);       
     },
     all: function(params) {
-        return this._coinCheck.request('get', this.urlRoot, params);  
+        return this._coincheck.request('get', this.urlRoot, params);  
     },
     cancel: function(params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }
         }, params);
-        return this._coinCheck.request('delete', this.urlRoot + '/' + arr.data.id, arr);
+        return this._coincheck.request('delete', this.urlRoot + '/' + arr.data.id, arr);
     }
 };
 

@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/coincheckjp/coincheck-node/issues"
   },
-  "homepage": "https://github.com/coincheckjp/coincheck-node#readme"
+  "homepage": "https://github.com/coincheckjp/coincheck-node#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
 }

@@ -1,30 +1,30 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
-function Borrow(coinCheck) {
-    this._coinCheck = coinCheck;
+function Borrow(coincheck) {
+    this._coincheck = coincheck;
 }
 
 Borrow.prototype = {
     urlRoot: '/api/lending/borrows',
     create: function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 amount: null,
                 currency: null
             }
         }, params);
-        return this._coinCheck.request('post', this.urlRoot, arr);
+        return this._coincheck.request('post', this.urlRoot, arr);
     },
     matches: function (params) {
-        return this._coinCheck.request('get', this.urlRoot + '/matches', params);
+        return this._coincheck.request('get', this.urlRoot + '/matches', params);
     },
     repay: function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }
         }, params);
-        return this._coinCheck.request('post', this.urlRoot + '/repay', arr);
+        return this._coincheck.request('post', this.urlRoot + '/repay', arr);
     }
 };
 

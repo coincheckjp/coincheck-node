@@ -1,11 +1,11 @@
-function Trade(coinCheck) {
-    this._coinCheck = coinCheck;
+function Trade(coincheck) {
+    this._coincheck = coincheck;
 }
 
 Trade.prototype = {
     urlRoot: '/api/trades',
     all: function(params) {
-        return this._coinCheck.request('get', this.urlRoot, params);
+        return this._coincheck.request('get', this.urlRoot, params);
     }
 };
 
