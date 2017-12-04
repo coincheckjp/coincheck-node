@@ -101,7 +101,7 @@ CoinCheck.prototype = {
             paramData = {};
         }
 
-        let headers = _.extend(this._headers, {
+        var headers = _.extend(this._headers, {
             'Content-Type': 'application/json',
             'User-Agent': `NodeCoinCheckClient v${CoinCheck.prototype.VERSION}`
         });
