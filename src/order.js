@@ -1,4 +1,4 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
 function Order(coinCheck) {
     this._coinCheck = coinCheck;
@@ -10,7 +10,7 @@ Order.prototype = {
         return this._coinCheck.request('post', this.urlRoot, params);
     },
     cancel: function(params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }

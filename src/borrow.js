@@ -1,4 +1,4 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
 function Borrow(coinCheck) {
     this._coinCheck = coinCheck;
@@ -7,7 +7,7 @@ function Borrow(coinCheck) {
 Borrow.prototype = {
     urlRoot: '/api/lending/borrows',
     create: function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 amount: null,
                 currency: null
@@ -19,7 +19,7 @@ Borrow.prototype = {
         return this._coinCheck.request('get', this.urlRoot + '/matches', params);
     },
     repay: function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }

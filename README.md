@@ -171,4 +171,3 @@ coinCheck.transfer.from_leverage(params);
 
 ## License
 MIT
-

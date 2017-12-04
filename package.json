@@ -1,6 +1,6 @@
 {
   "name": "coincheck",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "The easiest Bitcoin Exchange in Japan",
   "main": "src/coin_check.js",
   "directories": {
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/coincheckjp/coincheck-node/issues"
   },
-  "homepage": "https://github.com/coincheckjp/coincheck-node#readme"
+  "homepage": "https://github.com/coincheckjp/coincheck-node#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
 }

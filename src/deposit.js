@@ -1,4 +1,4 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
 function Deposit(coinCheck) {
     this._coinCheck = coinCheck;
@@ -7,7 +7,7 @@ function Deposit(coinCheck) {
 Deposit.prototype = {
     urlRoot: '/api/deposit_money',
     all: function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 currency: null
             }
@@ -15,7 +15,7 @@ Deposit.prototype = {
         return this._coinCheck.request('get', this.urlRoot, arr);
     },
     fast: function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }

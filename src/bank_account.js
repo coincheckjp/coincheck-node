@@ -1,4 +1,4 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
 function BankAccount(coinCheck) {
     this._coinCheck = coinCheck;
@@ -7,7 +7,7 @@ function BankAccount(coinCheck) {
 BankAccount.prototype = {
     urlRoot: '/api/bank_accounts',
     create : function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 bank_name: null,
                 branch_name: null,
@@ -22,7 +22,7 @@ BankAccount.prototype = {
         return this._coinCheck.request('get', this.urlRoot, params);
     },
     delete : function (params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }

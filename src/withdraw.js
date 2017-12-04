@@ -1,4 +1,4 @@
-var utils = require('./utils.js');
+const _ = require('underscore');
 
 function Withdraw(coinCheck) {
     this._coinCheck = coinCheck;
@@ -13,7 +13,7 @@ Withdraw.prototype = {
         return this._coinCheck.request('get', this.urlRoot, params);  
     },
     cancel: function(params) {
-        var arr = utils.extend({
+        var arr = _.extend({
             data: {
                 id: null
             }
