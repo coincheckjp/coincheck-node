@@ -1,7 +1,7 @@
 const _ = require('underscore');
 
-function Transfer(coincheck) {
-    this._coincheck = coincheck;
+function Transfer(coinCheck) {
+    this._coinCheck = coinCheck;
 }
 
 Transfer.prototype = {
@@ -13,7 +13,7 @@ Transfer.prototype = {
                 currency: null
             }
         }, params);
-        return this._coincheck.request('post', this.urlRoot + '/to_leverage', arr);
+        return this._coinCheck.request('post', this.urlRoot + '/to_leverage', arr);
     },
     from_leverage: function(params) {
         var arr = _.extend({
@@ -22,7 +22,7 @@ Transfer.prototype = {
                 currency: null
             }
         }, params);
-        return this._coincheck.request('post', this.urlRoot + '/from_leverage', arr);
+        return this._coinCheck.request('post', this.urlRoot + '/from_leverage', arr);
     }
 };
 

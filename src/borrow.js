@@ -1,7 +1,7 @@
 const _ = require('underscore');
 
-function Borrow(coincheck) {
-    this._coincheck = coincheck;
+function Borrow(coinCheck) {
+    this._coinCheck = coinCheck;
 }
 
 Borrow.prototype = {
@@ -13,10 +13,10 @@ Borrow.prototype = {
                 currency: null
             }
         }, params);
-        return this._coincheck.request('post', this.urlRoot, arr);
+        return this._coinCheck.request('post', this.urlRoot, arr);
     },
     matches: function (params) {
-        return this._coincheck.request('get', this.urlRoot + '/matches', params);
+        return this._coinCheck.request('get', this.urlRoot + '/matches', params);
     },
     repay: function (params) {
         var arr = _.extend({
@@ -24,7 +24,7 @@ Borrow.prototype = {
                 id: null
             }
         }, params);
-        return this._coincheck.request('post', this.urlRoot + '/repay', arr);
+        return this._coinCheck.request('post', this.urlRoot + '/repay', arr);
     }
 };
 

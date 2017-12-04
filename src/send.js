@@ -1,7 +1,7 @@
 const _ = require('underscore');
 
-function Send(coincheck) {
-    this._coincheck = coincheck;
+function Send(coinCheck) {
+    this._coinCheck = coinCheck;
 }
 
 Send.prototype = {
@@ -13,7 +13,7 @@ Send.prototype = {
                 amount: null
             }
         }, params);console.info(arr);
-        return this._coincheck.request('post', this.urlRoot, params);
+        return this._coinCheck.request('post', this.urlRoot, params);
     },
     all: function(params) {
         var arr = _.extend({
@@ -21,7 +21,7 @@ Send.prototype = {
                 currency: null
             }
         }, params);
-        return this._coincheck.request('get', this.urlRoot, arr);
+        return this._coinCheck.request('get', this.urlRoot, arr);
     }
 };
 

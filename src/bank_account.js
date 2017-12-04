@@ -1,7 +1,7 @@
 const _ = require('underscore');
 
-function BankAccount(coincheck) {
-    this._coincheck = coincheck;
+function BankAccount(coinCheck) {
+    this._coinCheck = coinCheck;
 }
 
 BankAccount.prototype = {
@@ -16,10 +16,10 @@ BankAccount.prototype = {
                 name: null,
             }
         }, params);
-        return this._coincheck.request('post', this.urlRoot, arr);
+        return this._coinCheck.request('post', this.urlRoot, arr);
     },
     all : function (params) {
-        return this._coincheck.request('get', this.urlRoot, params);
+        return this._coinCheck.request('get', this.urlRoot, params);
     },
     delete : function (params) {
         var arr = _.extend({
@@ -27,7 +27,7 @@ BankAccount.prototype = {
                 id: null
             }
         }, params);
-        return this._coincheck.request('delete', this.urlRoot + '/' + arr.data.id, arr);
+        return this._coinCheck.request('delete', this.urlRoot + '/' + arr.data.id, arr);
     }
 };
 

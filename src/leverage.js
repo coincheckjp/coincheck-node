@@ -1,11 +1,11 @@
-function Leverage(coincheck) {
-    this._coincheck = coincheck;
+function Leverage(coinCheck) {
+    this._coinCheck = coinCheck;
 }
 
 Leverage.prototype = {
     urlRoot: '/api/exchange/leverage',
     positions: function (params) {
-        return this._coincheck.request('get', this.urlRoot + '/positions', params);
+        return this._coinCheck.request('get', this.urlRoot + '/positions', params);
     }
 };
 

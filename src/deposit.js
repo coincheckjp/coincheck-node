@@ -1,7 +1,7 @@
 const _ = require('underscore');
 
-function Deposit(coincheck) {
-    this._coincheck = coincheck;
+function Deposit(coinCheck) {
+    this._coinCheck = coinCheck;
 }
 
 Deposit.prototype = {
@@ -12,7 +12,7 @@ Deposit.prototype = {
                 currency: null
             }
         }, params);
-        return this._coincheck.request('get', this.urlRoot, arr);
+        return this._coinCheck.request('get', this.urlRoot, arr);
     },
     fast: function (params) {
         var arr = _.extend({
@@ -20,7 +20,7 @@ Deposit.prototype = {
                 id: null
             }
         }, params);
-        return this._coincheck.request('post', this.urlRoot + '/' + arr.data.id + '/fast', arr);
+        return this._coinCheck.request('post', this.urlRoot + '/' + arr.data.id + '/fast', arr);
     }
 };
 
