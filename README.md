@@ -13,9 +13,9 @@ npm install coincheck
 ## Usage
 
 ```js
-var Coincheck = require('../src/coin_check.js');
+var CoinCheck = require('../src/coin_check.js');
 
-var cc = new Coincheck.Coincheck('ACCESS_KEY', 'API_SECRET');
+var cc = new CoinCheck.CoinCheck('ACCESS_KEY', 'API_SECRET');
 
 var params = {
     options: {

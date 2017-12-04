@@ -1,9 +1,9 @@
 'use strict'
 
-var Coincheck = require('../src/coin_check.js');
+var CoinCheck = require('../src/coin_check.js');
 
 const {ACCESS_KEY, API_SECRET} = process.env;
-const cc = new Coincheck.Coincheck(ACCESS_KEY, API_SECRET);
+const cc = new CoinCheck.CoinCheck(ACCESS_KEY, API_SECRET);
 
 var params = {
     options: {

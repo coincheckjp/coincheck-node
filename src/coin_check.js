@@ -20,7 +20,7 @@ const Withdraw = require('./withdraw.js');
 const Borrow = require('./borrow.js');
 const Transfer = require('./transfer.js');
 
-function Coincheck(accessKey, secretKey, options) {
+function CoinCheck(accessKey, secretKey, options) {
     this.accessKey = accessKey;
     this.secretKey = secretKey;
 
@@ -41,7 +41,7 @@ function Coincheck(accessKey, secretKey, options) {
     this.transfer = new Transfer.Transfer(this);
 }
 
-Coincheck.prototype = {
+CoinCheck.prototype = {
     VERSION: '0.1.0',
 
     apiBase: 'coincheck.com',
@@ -103,7 +103,7 @@ Coincheck.prototype = {
 
         let headers = _.extend(this._headers, {
             'Content-Type': 'application/json',
-            'User-Agent': `NodeCoincheckClient v${Coincheck.prototype.VERSION}`
+            'User-Agent': `NodeCoinCheckClient v${CoinCheck.prototype.VERSION}`
         });
 
         this.setSignature(path, paramData);
@@ -158,4 +158,4 @@ Coincheck.prototype = {
     }
 };
 
-exports.Coincheck = Coincheck;
+exports.CoinCheck = CoinCheck;
