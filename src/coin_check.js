@@ -109,7 +109,7 @@ CoinCheck.prototype = {
         this.setSignature(path, paramData);
 
         if (method == 'post' || method == 'delete') {
-            headers = _.extend(headers, {
+            headers = _.extend(JSON.parse(JSON.stringify(headers)), {
                 'Content-Length': Buffer.byteLength(JSON.stringify(paramData))
             });
         }
